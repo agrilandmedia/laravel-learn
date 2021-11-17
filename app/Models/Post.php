@@ -24,22 +24,25 @@ class Post extends Model
         $this->slug = $slug;
     }
 
-    public static function findPost($slug) {
+    public static function findPost($slug)
+    {
         return static::allPosts()->firstWhere('slug', $slug);
     }
 
-    public static function allPosts() {
-        return  $posts = collect(File::files(resource_path("posts")))
-                ->map(function ($file) {
-                    $document = YamlFrontMatter::parseFile($file);
+    public static function allPosts()
+    {
+        return collect(File::files(resource_path("posts")))
+            ->map(function ($file) {
+                $document = YamlFrontMatter::parseFile($file);
 
-                    return new Post(
-                        $document->title,
-                        $document->excerpt,
-                        $document->date,
-                        $document->body(),
-                        $document->slug
-                    );
-                });
+                return new Post(
+                    $document->title,
+                    $document->excerpt,
+                    $document->date,
+                    $document->body(),
+                    $document->slug
+                );
+            })
+            ->sortByDesc('date');
     }
 }
