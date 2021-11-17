@@ -13,6 +13,9 @@
         </style>
     </head>
     <body>
-        <h1>This is my Landing Page</h1>
+        <article>
+            <?= $post ?>
+        </article>
+        <a href="/">Go Back to Posts Page</a>
     </body>
 </html>
