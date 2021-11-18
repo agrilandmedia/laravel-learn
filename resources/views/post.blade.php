@@ -3,6 +3,9 @@
 @section ('content')
     <h1>{{ $post->title }}</h1>
     <article>
+        <p class="by-author">
+            By {{ ucfirst(trans($post->user->name)) }}
+        </p>
         <div class="category-date-container">
             <p class="post-category">
                 <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>

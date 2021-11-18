@@ -35,3 +35,7 @@ article a {
 .category-date-container {
     margin-bottom: -20px;
 }
+.by-author {
+    font-size: 16px;
+    font-style: italic;
+}
