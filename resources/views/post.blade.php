@@ -4,7 +4,7 @@
     <article>
         <h1>{{ $post->title }}</h1>
         <p class="post-date">
-            {{ $post->date }}
+            {{ $post->created_at }}
         </p>
         <div>
             {!! $post->body !!}
