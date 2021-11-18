@@ -1,11 +1,11 @@
 @extends ('layout')
 
 @section ('content')
+    <h1>{{ $post->title }}</h1>
     <article>
-        <h1>{{ $post->title }}</h1>
         <div class="category-date-container">
             <p class="post-category">
-                {{ $post->category->name }}
+                <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>
             </p>
             <p class="post-date">
                 {{ $post->created_at }}

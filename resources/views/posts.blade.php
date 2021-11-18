@@ -6,18 +6,18 @@
         <article>
             <a href="/posts/{{ $post->slug }}">
                 <h3>{{ $post->title }}</h3>
-                <div class="category-date-container">
-                    <p class="post-category">
-                        {{ $post->category->name }}
-                    </p>
-                    <p class="post-date">
-                        {{ $post->created_at }}
-                    </p>
-                </div>
-                <p>
-                    {{ $post->excerpt }}
-                </p>
             </a>
+            <div class="category-date-container">
+                <p class="post-category">
+                    <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>
+                </p>
+                <p class="post-date">
+                    {{ $post->created_at }}
+                </p>
+            </div>
+            <p>
+                {{ $post->excerpt }}
+            </p>
         </article>
     @endforeach
 @endsection
