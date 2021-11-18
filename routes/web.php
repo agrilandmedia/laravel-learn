@@ -6,12 +6,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('posts', [
-        'posts' => Post::allPosts()
+        'posts' => Post::all()
     ]);
 });
 
-Route::get('posts/{post}', function ($slug) {
+Route::get('posts/{post}', function ($id) {
     return view('post', [
-        'post' => Post::findPost($slug)
+        'post' => Post::find($id)
     ]);
 });
