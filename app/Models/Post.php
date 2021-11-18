@@ -31,18 +31,20 @@ class Post extends Model
 
     public static function allPosts()
     {
-        return collect(File::files(resource_path("posts")))
-            ->map(function ($file) {
-                $document = YamlFrontMatter::parseFile($file);
+        return cache()->rememberForever('posts.all', function () {
+            return collect(File::files(resource_path("posts")))
+                ->map(function ($file) {
+                    $document = YamlFrontMatter::parseFile($file);
 
-                return new Post(
-                    $document->title,
-                    $document->excerpt,
-                    $document->date,
-                    $document->body(),
-                    $document->slug
-                );
-            })
-            ->sortByDesc('date');
+                    return new Post(
+                        $document->title,
+                        $document->excerpt,
+                        $document->date,
+                        $document->body(),
+                        $document->slug
+                    );
+                })
+                ->sortByDesc('date');
+        });
     }
 }
