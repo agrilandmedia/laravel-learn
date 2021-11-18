@@ -6,9 +6,14 @@
         <article>
             <a href="/posts/{{ $post->slug }}">
                 <h3>{{ $post->title }}</h3>
-                <p class="post-date">
-                    {{ $post->created_at }}
-                </p>
+                <div class="category-date-container">
+                    <p class="post-category">
+                        {{ $post->category->name }}
+                    </p>
+                    <p class="post-date">
+                        {{ $post->created_at }}
+                    </p>
+                </div>
                 <p>
                     {{ $post->excerpt }}
                 </p>

@@ -3,9 +3,14 @@
 @section ('content')
     <article>
         <h1>{{ $post->title }}</h1>
-        <p class="post-date">
-            {{ $post->created_at }}
-        </p>
+        <div class="category-date-container">
+            <p class="post-category">
+                {{ $post->category->name }}
+            </p>
+            <p class="post-date">
+                {{ $post->created_at }}
+            </p>
+        </div>
         <div>
             {!! $post->body !!}
         </div>
