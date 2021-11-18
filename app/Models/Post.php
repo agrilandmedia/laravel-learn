@@ -26,7 +26,13 @@ class Post extends Model
 
     public static function findPost($slug)
     {
-        return static::allPosts()->firstWhere('slug', $slug);
+        $post = static::allPosts()->firstWhere('slug', $slug);
+
+        if (! $post) {
+            throw new ModelNotFoundException();
+        }
+
+        return $post;
     }
 
     public static function allPosts()
