@@ -9,6 +9,8 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $with = ['category', 'author']; // 'Eager Loading' reduces the number of SQL queries !!!
+
     public function category()
     {
         return $this->belongsTo(Category::class);

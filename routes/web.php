@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('posts', [
-        'posts' => Post::latest('created_at')->with(['category', 'author'])->get() // Reduce the number of SQL queries !!!
+        'posts' => Post::latest('created_at')->get()
     ]);
 });
 
