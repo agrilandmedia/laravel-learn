@@ -4,7 +4,7 @@
     <h1>{{ $post->title }}</h1>
     <article>
         <p class="by-author">
-            By {{ ucfirst(trans($post->user->name)) }}
+            By <a href="/authors/{{ $post->author->name }}">{{ ucfirst(trans($post->author->name)) }}</a>
         </p>
         <div class="category-date-container">
             <p class="post-category">
