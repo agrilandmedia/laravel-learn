@@ -1,23 +1,24 @@
-@extends ('layout')
+<x-layout>
+    @include ('_posts-header')
 
-@section ('content')
-    <h1>Posts</h1>
-    @foreach ($posts as $post)
-        <article>
-            <a href="/posts/{{ $post->slug }}">
-                <h3>{{ $post->title }}</h3>
-            </a>
-            <div class="category-date-container">
-                <p class="post-category">
-                    <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>
-                </p>
-                <p class="post-date">
-                    {{ $post->created_at }}
-                </p>
-            </div>
-            <p>
-                {{ $post->excerpt }}
-            </p>
-        </article>
-    @endforeach
-@endsection
+    <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
+        @if ($posts->count())
+            <x-post-featured-card :post="$posts[0]"/>
+
+            @if ($posts->count() > 1)
+                <div class="lg:grid lg:grid-cols-3">
+                    @foreach ($posts->skip(1) as $post)
+                        <x-post-card :post="$post" />
+                    @endforeach
+                </div>
+            @endif
+        @else
+            <p>There are not any Posts created yet.</p>
+        @endif
+        {{-- <div class="lg:grid lg:grid-cols-2">
+            <x-post-card />
+            <x-post-card />
+            <x-post-card />
+        </div> --}}
+    </main>
+</x-layout>
