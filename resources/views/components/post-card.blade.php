@@ -4,7 +4,7 @@
     <div class="py-6 px-5">
         <div>
             <a href="/posts/{{ $post->slug }}">
-                <img src="/images/grass-growth.jpeg" alt="Blog Post illustration" class="rounded-lg">
+                <img src="/images/harvest.jpeg" alt="Blog Post illustration" class="rounded-lg">
             </a>
         </div>
 
