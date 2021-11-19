@@ -1,11 +1,14 @@
 @extends ('layout')
 
 @section ('content')
+    <h1>{{ $post->title }}</h1>
     <article>
-        <h1>{{ $post->title }}</h1>
+        <p class="by-author">
+            By <a href="/authors/{{ $post->author->name }}">{{ ucfirst(trans($post->author->name)) }}</a>
+        </p>
         <div class="category-date-container">
             <p class="post-category">
-                {{ $post->category->name }}
+                <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>
             </p>
             <p class="post-date">
                 {{ $post->created_at }}
