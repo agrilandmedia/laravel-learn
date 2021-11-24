@@ -1,36 +1,12 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Models\Category;
-use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
-
-Route::get('/', function () {
-    return view('posts', [
-        'posts' => Post::latest('created_at')->get(),
-        'categories' => Category::all()
-    ]);
-})->name('home');
-
-Route::get('posts/{post:slug}', function (Post $post) {
-    return view('post', [
-        'post' => $post,
-        'categories' => Category::all()
-    ]);
-});
-
-Route::get('categories/{category:slug}', function (Category $category) {
-    return view('posts', [
-        'posts' => $category->posts,
-        'categories' => Category::all(),
-        'currentCategory' => $category
-    ]);
-})->name('category');
-
-Route::get('authors/{author:name}', function (User $author) {
-    return view('posts', [
-        'posts' => $author->posts,
-        'categories' => Category::all()
-    ]);
-});
+// Post Controller actions
+Route::get('/', [PostController::class, 'index'])->name('home');
+Route::get('posts/{post:slug}', [PostController::class, 'show']);
+Route::get('categories/{category:slug}', [PostController::class, 'showAllPostsByCategory'])->name('category');
+Route::get('authors/{author:name}', [PostController::class, 'showAllPostsByAuthor']);
