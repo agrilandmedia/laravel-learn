@@ -10,15 +10,15 @@ class PostController extends Controller
 {
     // Show all Posts at Homepage
     public function index() {
-        return view('posts', [
-            'posts' => Post::latest('created_at')->filter(request(['search']))->get(),
+        return view('posts.index', [
+            'posts' => Post::latest('created_at')->filter(request(['search']))->get(), // It uses the scopeFilter method in Post class
             'categories' => Category::all()
         ]);
     }
 
     // Show single Post
     public function show(Post $post) {
-        return view('post', [
+        return view('posts.show', [
             'post' => $post,
             'categories' => Category::all()
         ]);
@@ -26,7 +26,7 @@ class PostController extends Controller
 
     // Show Posts by Category
     public function showAllPostsByCategory(Category $category) {
-        return view('posts', [
+        return view('posts.index', [
             'posts' => $category->posts,
             'categories' => Category::all(),
             'currentCategory' => $category
@@ -35,7 +35,7 @@ class PostController extends Controller
 
     // Show Posts by Author
     public function showAllPostsByAuthor(User $author) {
-        return view('posts', [
+        return view('posts.index', [
             'posts' => $author->posts,
             'categories' => Category::all()
         ]);
