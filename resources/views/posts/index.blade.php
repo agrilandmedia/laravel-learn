@@ -12,7 +12,7 @@
                     @endforeach
                 </div>
             @endif
-            {{ $posts->links() }} {{-- Pagination --}}
+            {{-- {{ $posts->links() }} --}}
         @else
             <p>There are not any Posts created yet.</p>
         @endif
