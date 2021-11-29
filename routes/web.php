@@ -11,3 +11,4 @@ Route::get('categories/{category:slug}', [PostController::class, 'showAllPostsBy
 Route::get('authors/{author:name}', [PostController::class, 'showAllPostsByAuthor']);
 // Registration Controller
 Route::get('register', [RegistrationController::class, 'create']);
+Route::post('register', [RegistrationController::class, 'store']);

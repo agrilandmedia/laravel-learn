@@ -35,10 +35,10 @@
                     <div class="relative inline-block mx-auto lg:bg-white rounded-full">   
                         <form method="POST" action="#" class="lg:flex text-sm">
                             <div class="lg:py-3 lg:px-5 flex items-center">
-                                <label for="email" class="hidden lg:inline-block">
+                                <label for="email-subscribe" class="hidden lg:inline-block">
                                     <img src="/images/mailbox-icon.svg" alt="mailbox letter">
                                 </label>
-                                <input id="email" type="text" placeholder="Your email address" class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
+                                <input id="email-subscribe" type="text" placeholder="Your email address" class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
                             </div>
     
                             <button type="submit" class="transition-colors duration-300 bg-green-700 hover:bg-green-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8">
