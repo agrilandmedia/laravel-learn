@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class RegistrationController extends Controller {
     // Redirect to the Registration Form
@@ -16,7 +16,7 @@ class RegistrationController extends Controller {
         //var_dump(request()->all());
         $validatedData = request()->validate([
             'name' => ['required' , 'max:30'],
-            'email' => ['required', 'email', 'max:40'],
+            'email' => ['required', 'email', 'max:40', Rule::unique('users', 'email')],
             'password' => ['required', 'min:8']
         ]);
 
