@@ -16,10 +16,5 @@
         @else
             <p>There are not any Posts created yet.</p>
         @endif
-        {{-- <div class="lg:grid lg:grid-cols-2">
-            <x-post-card />
-            <x-post-card />
-            <x-post-card />
-        </div> --}}
     </main>
 </x-layout>

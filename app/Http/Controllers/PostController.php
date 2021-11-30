@@ -11,7 +11,7 @@ class PostController extends Controller
     // Show all Posts at Homepage
     public function index() {
         return view('posts.index', [
-            'posts' => Post::latest('created_at')->filter(request(['search']))->paginate(2), // It uses the scopeFilter method in Post class
+            'posts' => Post::latest('created_at')->filter(request(['search']))->paginate(6), // It uses the scopeFilter method in Post class
             'categories' => Category::all()
         ]);
     }

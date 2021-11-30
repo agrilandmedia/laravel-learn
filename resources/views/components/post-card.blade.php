@@ -35,7 +35,7 @@
 
             <footer class="flex justify-between items-center mt-8">
                 <div class="flex items-center text-sm">
-                    <img src="/images/lary-avatar.svg" alt="Lary avatar">
+                    <img src="https://i.pravatar.cc/50" alt="Lary avatar" class="rounded-lg">
                     <div class="ml-3">
                         <h5 class="font-bold">
                             By
