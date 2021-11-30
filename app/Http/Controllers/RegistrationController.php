@@ -18,7 +18,7 @@ class RegistrationController extends Controller {
         $validatedData = request()->validate([
             'name' => ['required' , 'max:30'],
             'email' => ['required', 'email', 'max:40', Rule::unique('users', 'email')],
-            'password' => ['required', 'min:8']
+            'password' => ['required', 'min:6']
         ]);
 
         $user = User::create($validatedData);

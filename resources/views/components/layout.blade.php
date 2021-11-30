@@ -29,6 +29,7 @@
                         </form>
                     @else
                         <a href="/register" class="text-xs font-bold uppercase">Register</a>
+                        <a href="/login" class="text-xs font-bold uppercase ml-6">Log In</a>
                     @endauth
     
                     <a href="#" class="bg-green-700 transition-colors duration-300 hover:bg-green-600 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
