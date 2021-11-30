@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class RegistrationController extends Controller {
     // Redirect to the Registration Form
@@ -20,7 +21,8 @@ class RegistrationController extends Controller {
             'password' => ['required', 'min:8']
         ]);
 
-        User::create($validatedData);
+        $user = User::create($validatedData);
+        Auth::login($user);
         //session()->flash('success', 'The New User has been created');
         // Below the shorthand alternative to sending a flash message (using 'with')
         return redirect('/')->with('success', 'The New User has been created');
