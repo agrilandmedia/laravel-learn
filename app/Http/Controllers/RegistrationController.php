@@ -21,7 +21,8 @@ class RegistrationController extends Controller {
         ]);
 
         User::create($validatedData);
-
-        return redirect('/');
+        //session()->flash('success', 'The New User has been created');
+        // Below the shorthand alternative to sending a flash message (using 'with')
+        return redirect('/')->with('success', 'The New User has been created');
     }
 }

@@ -29,6 +29,8 @@
             </nav>
 
             {{ $slot }}
+
+            <x-flash />
         
             <footer class="bg-gray-200 border border-black border-opacity-5 rounded-xl text-center pt-8 px-10 mt-10">
                 <div class="mt-4">
