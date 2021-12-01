@@ -25,16 +25,16 @@
 
                         <form method="POST" action="/logout" class="text-sm text-green-700 ml-6">
                             @csrf
-                            <button type="submit">Log Out</button>
+                            <button type="submit" class="mr-6">Log Out</button>
                         </form>
                     @else
                         <a href="/register" class="text-xs font-bold uppercase">Register</a>
                         <a href="/login" class="text-xs font-bold uppercase ml-6">Log In</a>
                     @endauth
-    
-                    <a href="#" class="bg-green-700 transition-colors duration-300 hover:bg-green-600 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
-                        Subscribe for Updates
-                    </a>
+
+                    <x-button>
+                        <a href="#newsletter">Subscribe for Updates</a>
+                    </x-button>
                 </div>
             </nav>
 
@@ -42,9 +42,9 @@
 
             <x-flash />
         
-            <footer class="bg-gray-200 border border-black border-opacity-5 rounded-xl text-center pt-8 px-10 mt-10">
+            <footer id="newsletter" class="bg-gray-200 border border-black border-opacity-5 rounded-xl text-center pt-8 px-10 mt-10">
                 <div class="mt-4">
-                    <div class="relative inline-block mx-auto lg:bg-white rounded-full">   
+                    <div class="relative inline-block mx-auto lg:bg-white rounded-lg">   
                         <form method="POST" action="#" class="lg:flex text-sm">
                             <div class="lg:py-3 lg:px-5 flex items-center">
                                 <label for="email-subscribe" class="hidden lg:inline-block">
@@ -53,9 +53,9 @@
                                 <input id="email-subscribe" type="text" placeholder="Your email address" class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
                             </div>
     
-                            <button type="submit" class="transition-colors duration-300 bg-green-700 hover:bg-green-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8">
-                                Subscribe
-                            </button>
+                            <x-button>
+                                <button type="submit" class="py-1">Subscribe</button>
+                            </x-button>
                         </form>
                     </div>
                 </div>
