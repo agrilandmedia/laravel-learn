@@ -2,7 +2,7 @@
 
 <article class="flex bg-gray-200 p-6 rounded-lg border border-gray-300">
     <div class="flex-shrink-0">
-        <img src="https://i.pravatar.cc/70?u" height="70" width="70" alt="Random Image" class="rounded-lg">
+        <img src="https://i.pravatar.cc/70?u={{ $comment->id }}" height="70" width="70" alt="Random Image" class="rounded-lg">
     </div>
     <div class="ml-6">
         <header>
