@@ -1,31 +1,25 @@
 <?php
 
-use App\Models\Category;
-use App\Models\Post;
-use App\Models\User;
+use App\Http\Controllers\PostCommentController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
+// Post Controller
+Route::get('/', [PostController::class, 'index'])->name('home');
+Route::get('posts/{post:slug}', [PostController::class, 'show']);
+Route::get('categories/{category:slug}', [PostController::class, 'showAllPostsByCategory'])->name('category');
+Route::get('authors/{author:name}', [PostController::class, 'showAllPostsByAuthor']);
 
-Route::get('/', function () {
-    return view('posts', [
-        'posts' => Post::latest('created_at')->get()
-    ]);
-});
+// Registration Controller
+Route::get('register', [RegistrationController::class, 'create'])->middleware('guest');
+Route::post('register', [RegistrationController::class, 'store'])->middleware('guest');
 
-Route::get('posts/{post:slug}', function (Post $post) {
-    return view('post', [
-        'post' => $post
-    ]);
-});
+// Session Controller
+Route::get('login', [SessionController::class, 'getLogInPage'])->middleware('guest');
+Route::post('login', [SessionController::class, 'store'])->middleware('guest');
+Route::post('logout', [SessionController::class, 'logOut'])->middleware('auth');
 
-Route::get('categories/{category:slug}', function (Category $category) {
-    return view('posts', [
-        'posts' => $category->posts
-    ]);
-});
-
-Route::get('authors/{author:name}', function (User $author) {
-    return view('posts', [
-        'posts' => $author->posts
-    ]);
-});
+// Comments Controller
+Route::post('posts/{post:slug}/comments', [PostCommentController::class, 'store']);
