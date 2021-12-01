@@ -52,24 +52,33 @@
             </div>
 
             <section class="col-span-8 col-start-5 space-y-6">
-                <form method="POST" action="#" class="bg-gray-200 p-6 rounded-lg border border-gray-300">
-                    @csrf
-                    <header class="flex text-center">
-                        <img src="https://i.pravatar.cc/70?u={{ auth()->id() }}" height="35" width="35" alt="Random Image" class="rounded-full">
-                        <h2 class="ml-3">Comments Section</h2>
-                    </header>
+                @auth {{-- Only if User is logged in --}}
+                    <form method="POST" action="/posts/{{ $post->slug }}/comments" class="bg-gray-200 p-6 rounded-lg border border-gray-300">
+                        @csrf
+                        <header class="flex text-center">
+                            <img src="https://i.pravatar.cc/70?u={{ auth()->id() }}" height="35" width="35" alt="Random Image" class="rounded-full">
+                            <h2 class="ml-3">Comments Section</h2>
+                        </header>
 
-                    <div class="mt-4">
-                        <textarea name="comment" cols="25" rows="5" class="w-full rounded-lg" placeholder="Place your comment"></textarea>
-                    </div>
+                        <div class="mt-4">
+                            <textarea name="comment" cols="25" rows="5" class="w-full rounded-lg" placeholder="Place your comment"></textarea>
+                        </div>
 
-                    <div class="flex justify-end">
-                        <x-button>
-                            <button type="submit">Save Comment</button>
-                        </x-button>
-                    </div>
-                </form>
+                        @error('comment')
+                            <span class="text-red-600 text-md italic">{{ $message }}</span>
+                        @enderror
 
+                        <div class="flex justify-end">
+                            <x-button>
+                                <button type="submit">Save Comment</button>
+                            </x-button>
+                        </div>
+                    </form>
+                @else
+                    <p class="text-gray-600 text-sm italic">
+                        Log in to write a comment
+                    </p>
+                @endauth
                 @foreach ($post->comments as $comment)
                     <x-post-comment :comment="$comment" />
                 @endforeach

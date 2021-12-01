@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostCommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\SessionController;
@@ -19,3 +20,6 @@ Route::post('register', [RegistrationController::class, 'store'])->middleware('g
 Route::get('login', [SessionController::class, 'getLogInPage'])->middleware('guest');
 Route::post('login', [SessionController::class, 'store'])->middleware('guest');
 Route::post('logout', [SessionController::class, 'logOut'])->middleware('auth');
+
+// Comments Controller
+Route::post('posts/{post:slug}/comments', [PostCommentController::class, 'store']);
