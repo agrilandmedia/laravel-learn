@@ -11,6 +11,10 @@ class Post extends Model
 
     protected $with = ['category', 'author']; // 'Eager Loading' reduces the number of SQL queries !!!
 
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
+
     public function category() {
         return $this->belongsTo(Category::class);
     }
