@@ -32,9 +32,13 @@
                         <a href="/login" class="text-xs font-bold uppercase ml-6 mr-6">Log In</a>
                     @endauth
 
-                    <x-button>
-                        <a href="#newsletter">Subscribe for Updates</a>
-                    </x-button>
+                    @auth
+                        @if (Auth::user()->is_admin)
+                            <x-button>
+                                <a href="/admin/posts/create">Add New Post</a>
+                            </x-button>
+                        @endif
+                    @endauth
                 </div>
             </nav>
 
@@ -42,7 +46,7 @@
 
             <x-flash />
         
-            <footer id="newsletter" class="bg-gray-200 border border-black border-opacity-5 rounded-xl text-center pt-8 px-10 mt-10">
+            <footer class="bg-gray-200 border border-black border-opacity-5 rounded-xl text-center pt-8 px-10 mt-10">
                 <div class="mt-4">
                     <div class="relative inline-block mx-auto lg:bg-white rounded-lg">   
                         <form method="POST" action="#" class="lg:flex text-sm">

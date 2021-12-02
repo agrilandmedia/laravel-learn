@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
     // Show all Posts at Homepage
     public function index() {
         return view('posts.index', [
-            'posts' => Post::latest('created_at')->filter(request(['search']))->paginate(6), // It uses the scopeFilter method in Post class
+            'posts' => Post::latest('created_at')->filter(request(['search']))->paginate(12), // It uses the scopeFilter method in Post class
             'categories' => Category::all()
         ]);
     }
@@ -48,12 +49,23 @@ class PostController extends Controller
 
     // Create a new Post (admin only)
     public function storePost() {
-        //ddd(request()->all());
-        request()->validate([
+        // $path = request()->file('avatar')->store('avatars');
+        // return 'File saved: ' . $path;
+        // ddd(str_replace(" ", "-", strtolower(request()->title)));
+        $validatedData = request()->validate([
             'title' => 'required',
             'excerpt' => 'required',
             'body' => 'required',
-            'category' => 'required'
+            'avatar' => ['required', 'image'],
+            'category_id' => ['required', Rule::exists('categories', 'id')]
         ]);
+
+        $validatedData['slug'] = str_replace(" ", "-", strtolower(request()->title));
+        $validatedData['user_id'] = auth()->id(); // User added, but it does not have to be validated
+        $validatedData['avatar'] = request()->file('avatar')->store('avatars'); // It returns the path to the uploaded image
+
+        Post::create($validatedData);
+
+        return redirect('/')->with('success', 'The new Post has been created');
     }
 }

@@ -4,7 +4,7 @@
     <div class="py-6 px-5">
         <div>
             <a href="/posts/{{ $post->slug }}">
-                <img src="/images/harvest.jpeg" alt="Blog Post illustration" class="rounded-lg">
+                <img src="{{ asset('storage/' . $post->avatar) }}" alt="{{ $post->title }}" class="rounded-lg">
             </a>
         </div>
 
@@ -35,7 +35,7 @@
 
             <footer class="flex justify-between items-center mt-8">
                 <div class="flex items-center text-sm">
-                    <img src="https://i.pravatar.cc/50?u={{ $post->id }}" alt="Author Image" class="rounded-lg">
+                    <img src="https://i.pravatar.cc/50?u={{ $post->user_id }}" alt="Author Image" class="rounded-lg">
                     <div class="ml-3">
                         <h5 class="font-bold">
                             By
