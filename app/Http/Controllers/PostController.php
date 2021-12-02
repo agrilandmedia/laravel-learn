@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
-use Symfony\Component\HttpFoundation\Response;
 
 class PostController extends Controller
 {
@@ -45,5 +44,16 @@ class PostController extends Controller
     // Redirect to a Create new Post page
     public function createPost() {
         return view('posts.create');
+    }
+
+    // Create a new Post (admin only)
+    public function storePost() {
+        //ddd(request()->all());
+        request()->validate([
+            'title' => 'required',
+            'excerpt' => 'required',
+            'body' => 'required',
+            'category' => 'required'
+        ]);
     }
 }

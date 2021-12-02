@@ -12,6 +12,7 @@ Route::get('posts/{post:slug}', [PostController::class, 'show']);
 Route::get('categories/{category:slug}', [PostController::class, 'showAllPostsByCategory'])->name('category');
 Route::get('authors/{author:name}', [PostController::class, 'showAllPostsByAuthor']);
 Route::get('admin/posts/create', [PostController::class, 'createPost'])->middleware('admin');
+Route::post('admin/posts/store', [PostController::class, 'storePost'])->middleware('admin');
 
 // Registration Controller
 Route::get('register', [RegistrationController::class, 'create'])->middleware('guest');
