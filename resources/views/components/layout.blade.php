@@ -29,7 +29,7 @@
                         </form>
                     @else
                         <a href="/register" class="text-xs font-bold uppercase">Register</a>
-                        <a href="/login" class="text-xs font-bold uppercase ml-6">Log In</a>
+                        <a href="/login" class="text-xs font-bold uppercase ml-6 mr-6">Log In</a>
                     @endauth
 
                     <x-button>
