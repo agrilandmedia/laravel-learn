@@ -21,23 +21,23 @@
     
                 <div class="mt-8 md:mt-0 flex items-center">
                     @auth
-                        <span class="text-sm font-bold uppercase">Hi, {{ auth()->user()->name }}</span>
+                        <x-dropdown>
+                            <x-slot name="trigger">
+                                <span class="text-md font-bold mr-4">Hello, {{ auth()->user()->name }}</span>
+                            </x-slot>
 
-                        <form method="POST" action="/logout" class="text-sm text-green-700 ml-6">
-                            @csrf
-                            <button type="submit" class="mr-6">Log Out</button>
-                        </form>
+                            @if (Auth::user()->is_admin)
+                                <x-dropdown-item href="/admin/posts/create" :active="request()->is('admin/posts/create')">New Post</x-dropdown-item>
+                            @endif
+                            <x-dropdown-item href="#" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">Log Out</x-dropdown-item>
+
+                            <form id="logout-form" method="POST" action="/logout" class="hidden">
+                                @csrf
+                            </form>
+                        </x-dropdown>
                     @else
                         <a href="/register" class="text-xs font-bold uppercase">Register</a>
                         <a href="/login" class="text-xs font-bold uppercase ml-6 mr-6">Log In</a>
-                    @endauth
-
-                    @auth
-                        @if (Auth::user()->is_admin)
-                            <x-form.button>
-                                <a href="/admin/posts/create">Add New Post</a>
-                            </x-form.button>
-                        @endif
                     @endauth
                 </div>
             </nav>
@@ -49,7 +49,7 @@
             <footer class="bg-gray-200 border border-black border-opacity-5 rounded-xl text-center pt-8 px-10 mt-10">
                 <div class="mt-4">
                     <div class="relative inline-block mx-auto lg:bg-white rounded-lg">   
-                        <form method="POST" action="#" class="lg:flex text-sm">
+                        <form method="GET" action="#" class="lg:flex text-sm">
                             <div class="lg:py-3 lg:px-5 flex items-center">
                                 <label for="email-subscribe" class="hidden lg:inline-block">
                                     <img src="/images/mailbox-icon.svg" alt="mailbox letter">
