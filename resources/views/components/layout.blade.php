@@ -34,9 +34,9 @@
 
                     @auth
                         @if (Auth::user()->is_admin)
-                            <x-button>
+                            <x-form.button>
                                 <a href="/admin/posts/create">Add New Post</a>
-                            </x-button>
+                            </x-form.button>
                         @endif
                     @endauth
                 </div>
@@ -57,9 +57,7 @@
                                 <input id="email-subscribe" type="text" placeholder="Your email address" class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
                             </div>
     
-                            <x-button>
-                                <button type="submit" class="py-1">Subscribe</button>
-                            </x-button>
+                            <x-form.button>Subscribe</x-form.button>
                         </form>
                     </div>
                 </div>

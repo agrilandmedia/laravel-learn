@@ -25,11 +25,9 @@
                     </p>
                 @enderror
             </div>
-            <div class="mb-6 flex justify-end">
-                <x-button>
-                    <button type="submit">Log In</button>
-                </x-button>
-            </div>
+            <x-form.button-wrapper>
+                <x-form.button>Log In</x-form.button>
+            </x-form.button-wrapper>
         </form>
     </main>
 </x-layout>

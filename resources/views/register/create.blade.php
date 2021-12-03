@@ -34,11 +34,9 @@
                 @enderror
             </div>
 
-            <div class="mb-6 flex justify-end">
-                <x-button>
-                    <button type="submit">Register</button>
-                </x-button>
-            </div>
+            <x-form.button-wrapper>
+                <x-form.button>Register</x-form.button>
+            </x-form.button-wrapper>
         </form>
     </main>
 </x-layout>

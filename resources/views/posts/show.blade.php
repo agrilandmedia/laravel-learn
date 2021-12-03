@@ -63,19 +63,14 @@
                         <div class="mt-4">
                             <textarea name="comment" cols="25" rows="5" class="w-full rounded-lg" placeholder="Place your comment"></textarea>
                         </div>
+                        <x-form.error name="comment" />
 
-                        @error('comment')
-                            <span class="text-red-600 text-md italic">{{ $message }}</span>
-                        @enderror
-
-                        <div class="flex justify-end">
-                            <x-button>
-                                <button type="submit">Save Comment</button>
-                            </x-button>
-                        </div>
+                        <x-form.button-wrapper>
+                            <x-form.button>Save Comment</x-form.button>
+                        </x-form.button-wrapper>
                     </form>
                 @else
-                    <p class="text-gray-600 text-sm italic">
+                    <p class="text-gray-400 text-sm italic">
                         Log in to write a comment
                     </p>
                 @endauth
