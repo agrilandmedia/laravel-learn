@@ -1,7 +1,5 @@
 <x-layout>
-    <main class="max-w-lg mx-auto mt-10 space-y-6 bg-gray-200 border border-gray-300 p-6 rounded-lg">
-        <h1 class="font-bold text-xl">Create New Post</h1>
-
+    <x-form.form-wrapper name="Create New Post">
         <form method="POST" action="/admin/posts/store" enctype="multipart/form-data">
             @csrf
             <x-form.input name="title" />
@@ -28,5 +26,5 @@
                 <x-form.button>Create Post</x-form.button>
             </x-form.button-wrapper>
         </form>
-    </main>
+    </x-form.form-wrapper>
 </x-layout>

@@ -6,9 +6,7 @@
             <div class="col-span-4 lg:text-center lg:pt-14 mb-10">
                 <img src="{{ asset('storage/' . $post->avatar) }}" alt="{{ $post->title }}" class="rounded-lg">
 
-                <p class="mt-4 block text-gray-400 text-xs">
-                    Published <time>{{ $post->created_at->diffForHumans() }}</time>
-                </p>
+                <x-post-published :post="$post" />
 
                 <div class="flex items-center lg:justify-center text-sm mt-4">
                     <img src="https://i.pravatar.cc/50?u={{ $post->user_id }}" alt="Author Image" class="rounded-lg">
@@ -35,11 +33,7 @@
                         Back to Posts
                     </a>
 
-                    <div class="space-x-2">
-                        <a href="/categories/{{ $post->category->slug }}" class="px-3 py-1 border border-green-600 rounded-full text-green-600 text-xs uppercase font-semibold" style="font-size: 10px">
-                            {{ $post->category->name }}
-                        </a>
-                    </div>
+                    <x-post-category :post="$post" />
                 </div>
 
                 <h1 class="font-bold text-3xl lg:text-4xl mb-10">
