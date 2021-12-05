@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\PostCommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegistrationController;
@@ -13,6 +14,9 @@ Route::get('categories/{category:slug}', [PostController::class, 'showAllPostsBy
 Route::get('authors/{author:name}', [PostController::class, 'showAllPostsByAuthor']);
 Route::get('admin/posts/create', [PostController::class, 'createPost'])->middleware('admin');
 Route::post('admin/posts/store', [PostController::class, 'storePost'])->middleware('admin');
+
+// Admin Post Controller
+Route::get('admin/posts', [AdminPostController::class, 'index'])->middleware('admin');
 
 // Registration Controller
 Route::get('register', [RegistrationController::class, 'create'])->middleware('guest');

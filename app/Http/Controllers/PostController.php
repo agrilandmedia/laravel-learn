@@ -44,7 +44,7 @@ class PostController extends Controller
 
     // Redirect to a Create new Post page
     public function createPost() {
-        return view('posts.create');
+        return view('admin.posts.create');
     }
 
     // Create a new Post (admin only)
