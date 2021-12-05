@@ -8,10 +8,10 @@
             <a href="/admin/posts/create" class="{{ request()->is('admin/posts/create') ? 'text-green-700' : '' }}">New Post</a>
         </li>
         <li>
-            <a href="#">Update Post</a>
+            <a href="#">Dashboard</a>
         </li>
         <li>
-            <a href="#">Delete Post</a>
+            <a href="#">Contact Us</a>
         </li>
     </ul>
 </aside>

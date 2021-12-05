@@ -25,11 +25,16 @@
                                                 {{ $post->excerpt }}
                                             </span>
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            Delete Test
-                                        </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <a href="/admin/posts/{{ $post->id }}/edit" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-red-700">
+                                            <form method="POST" action="/admin/posts/{{ $post->id }}">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button>Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
