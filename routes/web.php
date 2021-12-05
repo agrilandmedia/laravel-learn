@@ -12,11 +12,13 @@ Route::get('/', [PostController::class, 'index'])->name('home');
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
 Route::get('categories/{category:slug}', [PostController::class, 'showAllPostsByCategory'])->name('category');
 Route::get('authors/{author:name}', [PostController::class, 'showAllPostsByAuthor']);
-Route::get('admin/posts/create', [PostController::class, 'createPost'])->middleware('admin');
-Route::post('admin/posts/store', [PostController::class, 'storePost'])->middleware('admin');
 
 // Admin Post Controller
 Route::get('admin/posts', [AdminPostController::class, 'index'])->middleware('admin');
+Route::get('admin/posts/{post}/edit', [AdminPostController::class, 'edit'])->middleware('admin');
+Route::patch('admin/posts/{post}', [AdminPostController::class, 'update'])->middleware('admin');
+Route::get('admin/posts/create', [AdminPostController::class, 'createPost'])->middleware('admin');
+Route::post('admin/posts/store', [AdminPostController::class, 'storePost'])->middleware('admin');
 
 // Registration Controller
 Route::get('register', [RegistrationController::class, 'create'])->middleware('guest');
