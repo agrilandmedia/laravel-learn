@@ -14,12 +14,14 @@ Route::get('categories/{category:slug}', [PostController::class, 'showAllPostsBy
 Route::get('authors/{author:name}', [PostController::class, 'showAllPostsByAuthor']);
 
 // Admin Post Controller
-Route::get('admin/posts', [AdminPostController::class, 'index'])->middleware('admin');
-Route::get('admin/posts/{post}/edit', [AdminPostController::class, 'edit'])->middleware('admin');
-Route::patch('admin/posts/{post}', [AdminPostController::class, 'update'])->middleware('admin');
-Route::delete('admin/posts/{post}', [AdminPostController::class, 'destroy'])->middleware('admin');
-Route::get('admin/posts/create', [AdminPostController::class, 'createPost'])->middleware('admin');
-Route::post('admin/posts/store', [AdminPostController::class, 'storePost'])->middleware('admin');
+Route::middleware('can:admin')->group(function () {
+    Route::get('admin/posts', [AdminPostController::class, 'index']);
+    Route::get('admin/posts/{post}/edit', [AdminPostController::class, 'edit']);
+    Route::patch('admin/posts/{post}', [AdminPostController::class, 'update']);
+    Route::delete('admin/posts/{post}', [AdminPostController::class, 'destroy']);
+    Route::get('admin/posts/create', [AdminPostController::class, 'createPost']);
+    Route::post('admin/posts/store', [AdminPostController::class, 'storePost']);
+});
 
 // Registration Controller
 Route::get('register', [RegistrationController::class, 'create'])->middleware('guest');

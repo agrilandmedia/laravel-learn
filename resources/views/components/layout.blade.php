@@ -25,10 +25,15 @@
                             <x-slot name="trigger">
                                 <span class="text-md font-bold mr-4">Hello, {{ auth()->user()->name }}</span>
                             </x-slot>
-
-                            @if (Auth::user()->is_admin)
+                            
+                            {{-- @if(Auth::user()->can('admin')) --}}   {{-- 1. option check --}}
+                            {{-- @if (Auth::user()->is_admin) --}}      {{-- 2. alternative check (my built option) --}}
+                            @can('admin')                               {{-- 3. alternative check --}}
+                                <x-dropdown-item href="/admin/posts" :active="request()->is('admin/posts')">Dashboard</x-dropdown-item>
                                 <x-dropdown-item href="/admin/posts/create" :active="request()->is('admin/posts/create')">New Post</x-dropdown-item>
-                            @endif
+                            @endcan
+                            {{-- @endif --}}
+
                             <x-dropdown-item href="#" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">Log Out</x-dropdown-item>
 
                             <form id="logout-form" method="POST" action="/logout" class="hidden">
