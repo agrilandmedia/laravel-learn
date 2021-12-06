@@ -7,7 +7,7 @@
     <div class="ml-6">
         <header>
             <h2 class="text-xl">{{ $comment->author->name }}</h2>
-            <p class="text-xs text-gray-500 italic">
+            <p class="text-xs text-gray-400 italic">
                 <time>
                     {{ $comment->created_at->diffForHumans() }}
                 </time>

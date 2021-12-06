@@ -13,7 +13,7 @@ class SessionController extends Controller {
     public function store() {
         $validatedData = request()->validate([
             'email' => 'required|email|exists:users,email',
-            'password' => 'required'
+            'password' => 'required|min:6'
         ]);
 
         // Attempt to Log In a User

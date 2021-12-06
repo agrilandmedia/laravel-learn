@@ -21,20 +21,29 @@
     
                 <div class="mt-8 md:mt-0 flex items-center">
                     @auth
-                        <span class="text-sm font-bold uppercase">Hi, {{ auth()->user()->name }}</span>
+                        <x-dropdown>
+                            <x-slot name="trigger">
+                                <span class="text-md font-bold mr-4">Hello, {{ auth()->user()->name }}</span>
+                            </x-slot>
+                            
+                            {{-- @if(Auth::user()->can('admin')) --}}   {{-- 1. option check --}}
+                            {{-- @if (Auth::user()->is_admin) --}}      {{-- 2. alternative check (my built option) --}}
+                            @can('admin')                               {{-- 3. alternative check --}}
+                                <x-dropdown-item href="/admin/posts" :active="request()->is('admin/posts')">Dashboard</x-dropdown-item>
+                                <x-dropdown-item href="/admin/posts/create" :active="request()->is('admin/posts/create')">New Post</x-dropdown-item>
+                            @endcan
+                            {{-- @endif --}}
 
-                        <form method="POST" action="/logout" class="text-sm text-green-700 ml-6">
-                            @csrf
-                            <button type="submit">Log Out</button>
-                        </form>
+                            <x-dropdown-item href="#" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">Log Out</x-dropdown-item>
+
+                            <form id="logout-form" method="POST" action="/logout" class="hidden">
+                                @csrf
+                            </form>
+                        </x-dropdown>
                     @else
                         <a href="/register" class="text-xs font-bold uppercase">Register</a>
-                        <a href="/login" class="text-xs font-bold uppercase ml-6">Log In</a>
+                        <a href="/login" class="text-xs font-bold uppercase ml-6 mr-6">Log In</a>
                     @endauth
-    
-                    <a href="#" class="bg-green-700 transition-colors duration-300 hover:bg-green-600 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
-                        Subscribe for Updates
-                    </a>
                 </div>
             </nav>
 
@@ -44,8 +53,8 @@
         
             <footer class="bg-gray-200 border border-black border-opacity-5 rounded-xl text-center pt-8 px-10 mt-10">
                 <div class="mt-4">
-                    <div class="relative inline-block mx-auto lg:bg-white rounded-full">   
-                        <form method="POST" action="#" class="lg:flex text-sm">
+                    <div class="relative inline-block mx-auto lg:bg-white rounded-lg">   
+                        <form method="GET" action="#" class="lg:flex text-sm">
                             <div class="lg:py-3 lg:px-5 flex items-center">
                                 <label for="email-subscribe" class="hidden lg:inline-block">
                                     <img src="/images/mailbox-icon.svg" alt="mailbox letter">
@@ -53,9 +62,7 @@
                                 <input id="email-subscribe" type="text" placeholder="Your email address" class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
                             </div>
     
-                            <button type="submit" class="transition-colors duration-300 bg-green-700 hover:bg-green-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8">
-                                Subscribe
-                            </button>
+                            <x-form.button>Subscribe</x-form.button>
                         </form>
                     </div>
                 </div>

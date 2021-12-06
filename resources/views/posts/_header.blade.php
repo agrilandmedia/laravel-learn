@@ -15,7 +15,7 @@
                 </x-slot>
 
                 @foreach ($categories as $category)
-                    <x-dropdown-item href="/categories/{{ $category->slug }}" :active='request()->is("categories/{$category->slug}")'>
+                    <x-dropdown-item href="/categories/{{ $category->slug }}" :active="request()->is('categories/{$category->slug}')">
                         {{ $category->name }}
                     </x-dropdown-item>
                 @endforeach

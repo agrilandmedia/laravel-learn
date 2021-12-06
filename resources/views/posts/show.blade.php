@@ -4,14 +4,12 @@
     <main class="max-w-6xl mx-auto mt-10 lg:mt-20 space-y-6">
         <article class="max-w-4xl mx-auto lg:grid lg:grid-cols-12 gap-x-10">
             <div class="col-span-4 lg:text-center lg:pt-14 mb-10">
-                <img src="/images/harvest.jpeg" alt="Farm Image" class="rounded-lg">
+                <img src="{{ asset('storage/' . $post->avatar) }}" alt="{{ $post->title }}" class="rounded-lg">
 
-                <p class="mt-4 block text-gray-400 text-xs">
-                    Published <time>{{ $post->created_at->diffForHumans() }}</time>
-                </p>
+                <x-post-published :post="$post" />
 
                 <div class="flex items-center lg:justify-center text-sm mt-4">
-                    <img src="https://i.pravatar.cc/50" alt="Lary avatar" class="rounded-lg">
+                    <img src="https://i.pravatar.cc/50?u={{ $post->user_id }}" alt="Author Image" class="rounded-lg">
                     <div class="ml-3 text-left">
                         <h5 class="font-bold">
                             By
@@ -35,11 +33,7 @@
                         Back to Posts
                     </a>
 
-                    <div class="space-x-2">
-                        <a href="/categories/{{ $post->category->slug }}" class="px-3 py-1 border border-green-600 rounded-full text-green-600 text-xs uppercase font-semibold" style="font-size: 10px">
-                            {{ $post->category->name }}
-                        </a>
-                    </div>
+                    <x-post-category :post="$post" />
                 </div>
 
                 <h1 class="font-bold text-3xl lg:text-4xl mb-10">
@@ -63,19 +57,14 @@
                         <div class="mt-4">
                             <textarea name="comment" cols="25" rows="5" class="w-full rounded-lg" placeholder="Place your comment"></textarea>
                         </div>
+                        <x-form.error name="comment" />
 
-                        @error('comment')
-                            <span class="text-red-600 text-md italic">{{ $message }}</span>
-                        @enderror
-
-                        <div class="flex justify-end">
-                            <x-button>
-                                <button type="submit">Save Comment</button>
-                            </x-button>
-                        </div>
+                        <x-form.button-wrapper>
+                            <x-form.button>Save Comment</x-form.button>
+                        </x-form.button-wrapper>
                     </form>
                 @else
-                    <p class="text-gray-600 text-sm italic">
+                    <p class="text-gray-400 text-sm italic">
                         Log in to write a comment
                     </p>
                 @endauth
