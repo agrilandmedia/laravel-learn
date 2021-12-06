@@ -2,7 +2,7 @@
     <div class="flex">
         <x-widget />
 
-        <x-form.form-wrapper name="Create New Post" class="flex-1">
+        <x-form.form-wrapper name="Create New Post">
             <form method="POST" action="/admin/posts/store" enctype="multipart/form-data">
                 @csrf
                 <x-form.input name="title" />

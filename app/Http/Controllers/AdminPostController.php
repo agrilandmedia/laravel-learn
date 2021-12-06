@@ -19,17 +19,7 @@ class AdminPostController extends Controller {
 
     // Create a new Post (admin only)
     public function storePost() {
-        // $path = request()->file('avatar')->store('avatars');
-        // return 'File saved: ' . $path;
-        // ddd(str_replace(" ", "-", strtolower(request()->title)));
-        $validatedData = request()->validate([
-            'title' => 'required',
-            'excerpt' => 'required',
-            'body' => 'required',
-            'avatar' => ['required', 'image'],
-            'category_id' => ['required', Rule::exists('categories', 'id')]
-        ]);
-
+        $validatedData = $this->validatePost(new Post());
         $validatedData['slug'] = str_replace(" ", "-", strtolower(request()->title));
         $validatedData['user_id'] = auth()->id(); // User added, but it does not have to be validated
         $validatedData['avatar'] = request()->file('avatar')->store('avatars'); // It returns the path to the uploaded image
@@ -48,13 +38,7 @@ class AdminPostController extends Controller {
 
     // Store updated Post
     public function update(Post $post) {
-        $validatedData = request()->validate([
-            'title' => 'required',
-            'excerpt' => 'required',
-            'body' => 'required',
-            'avatar' => ['image'],
-            'category_id' => ['required', Rule::exists('categories', 'id')]
-        ]);
+        $validatedData = $this->validatePost($post);
 
         if (isset($validatedData['title'])) {
             $validatedData['slug'] = str_replace(" ", "-", strtolower(request()->title));
@@ -74,5 +58,16 @@ class AdminPostController extends Controller {
         $post->delete();
 
         return back()->with('success', 'Post has been deleted');
+    }
+
+    // Extracted function (avoid the code repetition)
+    protected function validatePost(Post $post): array {
+        return request()->validate([
+            'title' => 'required',
+            'excerpt' => 'required',
+            'body' => 'required',
+            'avatar' => $post->exists ? ['image'] : ['required', 'image'],
+            'category_id' => ['required', Rule::exists('categories', 'id')]
+        ]);
     }
 }

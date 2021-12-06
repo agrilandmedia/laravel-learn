@@ -2,7 +2,7 @@
     <div class="flex">
         <x-widget />
 
-        <x-form.form-wrapper name="Edit New Post" class="flex-1">
+        <x-form.form-wrapper name="Edit New Post">
             <form method="POST" action="/admin/posts/{{ $post->id }}" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH') {{-- To say it's an Update --}}
