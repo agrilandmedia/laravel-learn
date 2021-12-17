@@ -23,7 +23,7 @@
                     @auth
                         <x-dropdown>
                             <x-slot name="trigger">
-                                <span class="text-md font-bold mr-4">Hello, {{ auth()->user()->name }}</span>
+                                <span class="text-md font-bold mr-4 cursor-pointer">Hello, {{ auth()->user()->name }}</span>
                             </x-slot>
                             
                             {{-- @if(Auth::user()->can('admin')) --}}   {{-- 1. option check --}}
